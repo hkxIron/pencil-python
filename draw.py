@@ -32,13 +32,13 @@ if not args.p and not args.c:
 
 if args.p:
     start = time.time()
-    print 'pencil draw begin'
+    print('pencil draw begin')
     pencil_draw(path=args.image, gammaS=args.gammaS, gammaI=args.gammaI)
-    print 'pencil drawing end'
-    print 'time consumes: {0:.2f}s'.format(time.time() - start)
+    print('pencil drawing end')
+    print('time consumes: {0:.2f}s'.format(time.time() - start))
 
 if args.c:
     start = time.time()
-    print 'color pencil draw begin'
+    print('color pencil draw begin')
     color_draw(path=args.image, gammaS=args.gammaS, gammaI=args.gammaI)
-    print 'time consumes: {0:.2f}s'.format(time.time() - start)
+    print('time consumes: {0:.2f}s'.format(time.time() - start))

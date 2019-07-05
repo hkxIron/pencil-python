@@ -58,4 +58,4 @@ if __name__ == "__main__":
         color_draw(path=path)
     else:
         color_draw()
-    print 'time consumes: {}'.format(time.time() - start)
+    print('time consumes: {}'.format(time.time() - start))

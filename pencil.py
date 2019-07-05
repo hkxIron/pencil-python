@@ -30,8 +30,8 @@ from scipy.sparse.linalg import spsolve as spsolve
 import math
 import os
 import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
+#reload(sys)
+#sys.setdefaultencoding("utf-8")
 
 
 basedir = os.path.dirname(__file__)
@@ -120,7 +120,7 @@ def get_s(J, gammaS=1):
 
     # 八个方向的求和, 并执行归一化操作
     Sp = Spn.sum(axis=2)
-    Sp = (Sp - Sp[:].min()) / (Sp[:].max() - Sp[:].min())
+    Sp = (Sp - Sp[:].min()) / (Sp[:].max() - Sp[:].min()+1e-5)
     S = (1 - Sp) ** gammaS
 
     img = Image.fromarray(S * 255)
@@ -219,7 +219,9 @@ def pencil_draw(path="img/sjtu.jpg", gammaS=1, gammaI=1):
     type = "colour" if imr.mode == "RGB" else "black"
     im = imr.convert("L")
     J = np.array(im)
+    # 笔画结构
     S = get_s(J, gammaS=gammaS)
+    # 色调渲染
     T = get_t(J, type, gammaI=gammaI)
     IPencil = S * T
     img = Image.fromarray(IPencil * 255)
@@ -227,7 +229,9 @@ def pencil_draw(path="img/sjtu.jpg", gammaS=1, gammaI=1):
 
     save_output(Image.fromarray(S * 255), name + "_s", suffix)
     save_output(Image.fromarray(T * 255), name + "_t", suffix)
-    save_output(img, name + "_pencil", suffix)
+    output_name = name + "_pencil"
+    save_output(img, output_name, suffix)
+    print("output path:", output_name)
 
     return name + suffix
 

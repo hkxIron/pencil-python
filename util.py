@@ -27,9 +27,11 @@ def rot90(I, n=1):
     :param n:
     :return:
     '''
+    #print("I type:", type(I)," shape:", I.shape)
     rI = I
     for x in range(n):
-        rI = zip(*rI[::-1])
+        #rI = zip(rI[::-1])
+        rI = rI[::-1]
     return rI
 
 
